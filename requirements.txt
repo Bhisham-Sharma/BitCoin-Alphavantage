@@ -1,0 +1,9 @@
+Django
+psycopg2
+celery
+django-celery-beat
+redis
+djangorestframework==3.12
+requests
+python-decouple==3.4
+celery_once==3.0.1

@@ -1,23 +1,14 @@
-# BitCoin-Alphavantage
-Fetching API data using celery worker. Project setup on docker.
+API URL used for getting exchange price from BTC to USD:
+https://www.alphavantage.co/query?function=CURRENCY_EXCHANGE_RATE&from_currency=BTC&to_currency=USD&apikey=demo
 
-# Technologies Used
-- Django
-- Celery
-- Redis for Celery Broker
-- Postgres
-- Docker
-- Docker Compose
-- Rest Framework
+API URL used to fetch BTC price in USD market:
+https://www.alphavantage.co/query?function=DIGITAL_CURRENCY_DAILY&symbol=BTC&market=USD&apikey=demo
 
-# API Debugging Tools
-- POSTMAN
+API_KEY to be used to make GET/POST reuqets on URL 'api/v1/quotes/' : TECH@QUYTECH
 
-# Authentication
-- API key is set to authenticate the GET and POST requests made to our REST API.
+GET request: it will fetch the exchange rate from alpha vantage and give jSON response.
 
-# Third Party API used To Fetch Data:
-- AlphaVantage API
+POST request: it will fetch the data from database and return JSON response.
 
-# What this API does
-This API have a url api/v1/quotes/ on which both GET and POST request will be made. The GET request will return the JSON response of the current exchnage price of BTC in USD market. The POST request will fetch the daily historical price stored by the celery-workers in backend and return JSON response. Celery-workers are scheduled to fetch data at every 1 hour from AlphaVantage.
+Scheduled Task: After every hour, the api will fetch the BTC price in USD market and store it to the database, which can be accessed via POST reuqest made to the url as mentioned above. The first hour will start after one hour passed by the project running on server.
+ 
